@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SAS Gardening – Who Dares Weeds</title>
+  <title>SAS Gardening – Surrey's Trusted Garden Experts</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
   </style>
@@ -597,7 +597,7 @@
       <div class="contact-detail">
         <div class="icon">📞</div>
         <div>
-          <strong>Call Us On 07768 732651 </strong>
+          <strong>Call Us</strong>
           <span>Available Monday – Saturday, 8am – 6pm</span>
         </div>
       </div>
@@ -620,31 +620,35 @@
     <div class="contact-form-panel">
       <h3>Request a Free Quote</h3>
       <p>Tell us a little about your garden and what you're looking for.</p>
-      <div class="form-field">
-        <label>Your Name</label>
-        <input type="text" placeholder="e.g. Jane Smith"/>
-      </div>
-      <div class="form-field">
-        <label>Your Location</label>
-        <input type="text" placeholder="e.g. Kingston, Cheam, Sutton…"/>
-      </div>
-      <div class="form-field">
-        <label>Service Required</label>
-        <select>
-          <option value="">Please select…</option>
-          <option>Garden Maintenance</option>
-          <option>Landscaping</option>
-          <option>Hedge Cutting</option>
-          <option>Lawn Mowing</option>
-          <option>Communal Gardening</option>
-          <option>Not sure – please advise</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label>Tell Us More</label>
-        <textarea placeholder="A brief description of your garden and what you need…"></textarea>
-      </div>
-      <button class="form-submit">Send My Enquiry →</button>
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact"/>
+        <p style="display:none"><input name="bot-field"/></p>
+        <div class="form-field">
+          <label>Your Name</label>
+          <input type="text" name="name" placeholder="e.g. Jane Smith"/>
+        </div>
+        <div class="form-field">
+          <label>Your Location</label>
+          <input type="text" name="location" placeholder="e.g. Kingston, Cheam, Sutton…"/>
+        </div>
+        <div class="form-field">
+          <label>Service Required</label>
+          <select name="service">
+            <option value="">Please select…</option>
+            <option>Garden Maintenance</option>
+            <option>Landscaping</option>
+            <option>Hedge Cutting</option>
+            <option>Lawn Mowing</option>
+            <option>Communal Gardening</option>
+            <option>Not sure – please advise</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Tell Us More</label>
+          <textarea name="message" placeholder="A brief description of your garden and what you need…"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send My Enquiry →</button>
+      </form>
     </div>
   </div>
 </section>
