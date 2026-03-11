@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SAS Gardening – Surrey's Trusted Garden Experts</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+  </style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --moss:      #3a5a40;
+      --sage:      #6b8f5e;
+      --leaf:      #a8c897;
+      --cream:     #f5f0e8;
+      --linen:     #ede8dc;
+      --soil:      #5c4033;
+      --gold:      #c9a84c;
+      --charcoal:  #2a2a2a;
+      --white:     #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(58, 90, 64, 0.96);
+      backdrop-filter: blur(6px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--leaf);
+      letter-spacing: 0.04em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      color: var(--linen);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(160deg, rgba(30,55,30,0.78) 0%, rgba(58,90,64,0.55) 60%, transparent 100%),
+        url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center;
+      padding: 10rem 4rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--soil);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.1rem;
+      border-radius: 2px;
+      margin-bottom: 1.4rem;
+    }
+    .hero-content { max-width: 660px; }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .hero-content h1 em {
+      color: var(--leaf);
+      font-style: italic;
+    }
+    .hero-content p {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.88);
+      font-weight: 300;
+      max-width: 520px;
+      margin-bottom: 2.2rem;
+    }
+    .hero-areas {
+      display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.4rem;
+    }
+    .hero-areas span {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--leaf);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 2px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--soil);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.4rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #e0ba60; transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,0.5);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.95rem 2.4rem;
+      border-radius: 3px;
+      text-decoration: none;
+      margin-left: 1rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 4rem; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--moss);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .section-lead {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #555;
+      max-width: 580px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: var(--cream);
+      border-radius: 4px;
+      padding: 2.4rem 2rem;
+      border-top: 4px solid var(--leaf);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 36px rgba(58,90,64,0.12);
+    }
+    .service-icon {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--moss);
+      margin-bottom: 0.7rem;
+    }
+    .service-card p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--moss);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 100%;
+    }
+    #about .section-label { color: var(--leaf); }
+    #about .section-title { color: var(--white); }
+    #about .section-lead { color: rgba(255,255,255,0.8); max-width: 100%; }
+    .about-body p {
+      color: rgba(255,255,255,0.78);
+      font-weight: 300;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .stat {
+      border-left: 3px solid var(--gold);
+      padding-left: 1.2rem;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--leaf);
+      margin-top: 0.3rem;
+      display: block;
+    }
+    .about-image {
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    .about-image img {
+      width: 100%; height: 500px; object-fit: cover; display: block;
+    }
+    .about-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      border: 3px solid var(--gold);
+      border-radius: 4px;
+      transform: translate(14px, 14px);
+      pointer-events: none;
+    }
+
+    /* ── WHY US ── */
+    #why { background: var(--linen); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+    }
+    .why-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .why-dot {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      background: var(--moss);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      margin-top: 2px;
+    }
+    .why-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--moss);
+      margin-bottom: 0.3rem;
+    }
+    .why-item p { font-size: 0.9rem; color: #666; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      align-items: start;
+    }
+    .contact-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--moss);
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+    }
+    .contact-info p {
+      font-weight: 300;
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    .contact-detail {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .contact-detail .icon {
+      width: 40px; height: 40px;
+      background: var(--linen);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-detail span { font-size: 0.95rem; color: var(--charcoal); }
+    .contact-detail strong { display: block; color: var(--moss); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .contact-form-panel {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 2.8rem;
+      border-top: 4px solid var(--moss);
+    }
+    .contact-form-panel h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--moss);
+      margin-bottom: 0.4rem;
+    }
+    .contact-form-panel p { font-size: 0.9rem; color: #777; margin-bottom: 1.8rem; }
+    .form-field { margin-bottom: 1.2rem; }
+    .form-field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--sage);
+      margin-bottom: 0.4rem;
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #ddd;
+      border-radius: 3px;
+      background: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      transition: border-color 0.2s;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: var(--sage);
+    }
+    .form-field textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%;
+      background: var(--moss);
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--sage); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 2.5rem 4rem;
+      font-size: 0.85rem;
+    }
+    footer strong { color: var(--leaf); }
+
+    /* ── DIVIDER ── */
+    .leaf-divider {
+      text-align: center;
+      font-size: 1.4rem;
+      color: var(--leaf);
+      margin: 0;
+      padding: 1rem 0;
+      background: var(--white);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-badge    { animation: fadeUp 0.6s ease both; }
+    .hero-content h1 { animation: fadeUp 0.7s 0.1s ease both; }
+    .hero-content p  { animation: fadeUp 0.7s 0.2s ease both; }
+    .hero-areas      { animation: fadeUp 0.7s 0.3s ease both; }
+    .hero-ctas       { animation: fadeUp 0.7s 0.4s ease both; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      #about { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-image { display: none; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      #hero { padding: 8rem 1.5rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>SAS</span> Gardening</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Surrey's Trusted Garden Specialists</div>
+    <h1>Your Garden,<br/><em>Beautifully Cared For</em></h1>
+    <p>From lawn mowing to full landscaping transformations, SAS Gardening brings expertise, reliability, and a genuine love of the outdoors to every garden we touch.</p>
+    <div class="hero-areas">
+      <span>Kingston</span>
+      <span>Cheam</span>
+      <span>Sutton</span>
+      <span>Richmond</span>
+      <span>Surrounding Areas</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Get a Free Quote</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title">Services Tailored<br/>to Every Garden</h2>
+    <p class="section-lead">Whether you need a regular tidy-up or a complete garden redesign, we've got you covered — with the skills, equipment, and local know-how to get the job done right.</p>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-icon">🌿</span>
+        <h3>Garden Maintenance</h3>
+        <p>Keep your garden looking its best all year round. Our regular maintenance packages cover weeding, pruning, border tidying, planting, and seasonal clean-ups — so your outdoor space always makes the right impression without you having to lift a finger.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🏡</span>
+        <h3>Landscaping</h3>
+        <p>Dreaming of a garden that truly works for you? Our landscaping service takes your ideas and turns them into reality. From patios and pathways to planting schemes and garden design, we work with you to create outdoor spaces that are both beautiful and practical.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">✂️</span>
+        <h3>Hedge Cutting</h3>
+        <p>Neat, shaped hedges make all the difference to a garden's kerb appeal. We carefully trim and shape all types of hedging — from box and privet to laurel and leylandii — leaving clean, crisp lines and healthy growth. No job too small or too large.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🌱</span>
+        <h3>Lawn Mowing</h3>
+        <p>A lush, well-cut lawn is the foundation of any great garden. We offer flexible one-off cuts or regular mowing schedules to keep your grass at its best throughout the growing season. We'll also edge and tidy borders for that finishing touch.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🏘️</span>
+        <h3>Communal Gardening</h3>
+        <p>We work closely with housing associations, property management companies, and residents' groups to maintain communal green spaces across Surrey. Reliable, discreet, and professionally managed — we keep shared gardens looking smart for everyone who uses them.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="leaf-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-body">
+    <p class="section-label">Who We Are</p>
+    <h2 class="section-title">Rooted in Surrey,<br/>Passionate About Gardens</h2>
+    <p class="section-lead">We're a friendly, family-run gardening business — and we genuinely care about the work we do.</p>
+    <p>At SAS Gardening, we believe your garden should be a place you love spending time in. That's why we treat every garden we work in as if it were our own — with attention to detail, honest advice, and a commitment to quality that keeps our customers coming back season after season.</p>
+    <p>Based right here in Surrey, we know the local area, the local soils, and the local climate. We're proud to serve homeowners and businesses across Kingston, Cheam, Sutton, Richmond, and the surrounding communities — building lasting relationships built on trust and great results.</p>
+    <p>No pushy sales tactics, no hidden costs. Just reliable, skilled gardeners who show up on time and do a great job. Give us a call — we'd love to help your garden reach its full potential.</p>
+
+    <div class="about-stats">
+      <div class="stat">
+        <span class="stat-number">10+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">200+</span>
+        <span class="stat-label">Happy Customers</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">5</span>
+        <span class="stat-label">Areas Covered</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Satisfaction Focus</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-image">
+    <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80" alt="Gardener at work in a Surrey garden"/>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div style="max-width:1100px; margin:0 auto;">
+    <p class="section-label">Why Choose SAS</p>
+    <h2 class="section-title">The SAS Difference</h2>
+    <p class="section-lead">We're not just another gardening company — here's what sets us apart.</p>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-dot">📍</div>
+        <div>
+          <h4>Genuinely Local</h4>
+          <p>We live and work in Surrey. We know the area, and we're always close by when you need us.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-dot">🗓️</div>
+        <div>
+          <h4>Reliable &amp; On Time</h4>
+          <p>We respect your time. When we say we'll be there, we mean it — no no-shows, no last-minute cancellations.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-dot">💬</div>
+        <div>
+          <h4>Friendly &amp; Approachable</h4>
+          <p>We'll always take the time to listen, advise, and make sure you're completely happy with the work.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-dot">💷</div>
+        <div>
+          <h4>Fair, Transparent Pricing</h4>
+          <p>No hidden extras. We'll give you a clear quote upfront — and we'll stick to it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner" style="margin:0 auto;">
+    <div class="contact-info">
+      <p class="section-label">Get In Touch</p>
+      <h2>Let's Talk<br/>About Your Garden</h2>
+      <p>Ready to get started? We'd love to hear from you. Whether you have a specific project in mind or just want a friendly chat about what your garden needs, we're always happy to help. Get in touch today for a free, no-obligation quote.</p>
+
+      <div class="contact-detail">
+        <div class="icon">📞</div>
+        <div>
+          <strong>Call Us</strong>
+          <span>Available Monday – Saturday, 8am – 6pm</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">✉️</div>
+        <div>
+          <strong>Email Us</strong>
+          <span>We'll get back to you within 24 hours</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">📍</div>
+        <div>
+          <strong>Service Area</strong>
+          <span>Kingston, Cheam, Sutton, Richmond &amp; surrounding Surrey</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-panel">
+      <h3>Request a Free Quote</h3>
+      <p>Tell us a little about your garden and what you're looking for.</p>
+      <div class="form-field">
+        <label>Your Name</label>
+        <input type="text" placeholder="e.g. Jane Smith"/>
+      </div>
+      <div class="form-field">
+        <label>Your Location</label>
+        <input type="text" placeholder="e.g. Kingston, Cheam, Sutton…"/>
+      </div>
+      <div class="form-field">
+        <label>Service Required</label>
+        <select>
+          <option value="">Please select…</option>
+          <option>Garden Maintenance</option>
+          <option>Landscaping</option>
+          <option>Hedge Cutting</option>
+          <option>Lawn Mowing</option>
+          <option>Communal Gardening</option>
+          <option>Not sure – please advise</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Tell Us More</label>
+        <textarea placeholder="A brief description of your garden and what you need…"></textarea>
+      </div>
+      <button class="form-submit">Send My Enquiry →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>SAS Gardening</strong> — Surrey's friendly garden specialists.</p>
+  <p style="margin-top:0.5rem">Serving Kingston · Cheam · Sutton · Richmond · and surrounding areas &nbsp;|&nbsp; © 2025 SAS Gardening. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
